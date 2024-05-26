@@ -69,16 +69,16 @@ void sobel_operator(unsigned char* image, unsigned width, unsigned height) {
         fprintf(stderr, "Error: Memory allocation failed for temp_image\n");
         exit(1);
     }
-    //int sobel_x[3][3] = {
-    //    {-1, 0, 1},
-    //    {-2, 0, 2},
-    //    {-1, 0, 1}
-    //};
-    //int sobel_y[3][3] = {
-    //    {-1, -2, -1},
-    //    { 0,  0,  0},
-    //    { 1,  2,  1}
-    //};
+    /*int sobel_x[3][3] = {
+        {-1, 0, 1},
+        {-2, 0, 2},
+        {-1, 0, 1}
+    };
+    int sobel_y[3][3] = {
+        {-1, -2, -1},
+        { 0,  0,  0},
+        { 1,  2,  1}
+    };*/
     const char sobel_x[5][5] = {
         {+2, +1, 0, -1, -2},
         {+2, +1, 0, -1, -2},
@@ -140,7 +140,6 @@ bool is_border(unsigned char* image, unsigned x, unsigned y, unsigned width) {
     return image[4 * (y * width + x)] > 150; // 20, if 3x3 kernel; >= 150, if 5x5 kernel
 }
 
-
 void bfs(unsigned char* output, unsigned char* image, unsigned width, unsigned height, unsigned x, unsigned y, bool* visited) {
     unsigned char red = 120 + abs(rand()) % 136;
     unsigned char green = 180 + abs(rand()) % 76;
@@ -200,7 +199,7 @@ void segmentation(unsigned char* output, unsigned char* image, unsigned width, u
 
 int main() {
     srand(8);
-    const char* input_filename = "scull.png";
+    const char* input_filename = "head.png";
     const char* output_filename = "output_scull.png";
     unsigned char* segmented_image, * colored_image;
     unsigned error;
@@ -236,4 +235,3 @@ int main() {
     free(output);
     return 0;
 }
-
